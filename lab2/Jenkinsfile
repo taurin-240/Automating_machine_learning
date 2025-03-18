@@ -1,0 +1,37 @@
+pipeline {
+    agent { docker { image 'python:latest'
+            args '-v $WORKSPACE:/workspace'}}
+    stages {
+        stage('Check python & pip'){
+            steps {
+                sh "python --version"
+                sh "pip --version"
+                sh "chmod -R 777 /workspace/"
+            }
+        }
+        stage('Clone repository'){
+            steps {
+                git branch: 'main', url: 'https://github.com/taurin-240/Automating_machine_learning.git'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh '''
+                cd /workspace/lab2/
+                pwd
+                python -m venv ./lab2/venv
+                . ./venv/bin/activate
+                pip install -r requirements.txt
+                
+                python 1_data_creation.py
+                
+                python 2_data_preprocessing.py
+                
+                python 3_model_preparation.py
+                
+                python 4_model_testing.py
+                '''
+            }
+        }
+    }
+}
