@@ -1,15 +1,5 @@
-# Dockerfile
-
-FROM python:3.11-slim
-
-WORKDIR /app
-
-# Установим зависимости
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Скопируем проект
-COPY . .
-
-# Укажем точку входа
-CMD ["python", "src/model.py"]
+FROM jenkins/jenkins:lts
+EXPOSE 8080
+USER root
+RUN apt-get update && apt-get install -y python3.11 python3.11-dev python3.11-venv
+USER jenkins

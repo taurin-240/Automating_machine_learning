@@ -1,0 +1,4 @@
+/usr/bin/python3 -m venv /var/jenkins_home/workspace/MLOPS-pipeline/venv
+. /var/jenkins_home/workspace/MLOPS-pipeline/venv/bin/activate
+pip install --upgrade pip
+pip install -r /var/jenkins_home/workspace/MLOPS-pipeline/wine-project/requirements.txt
