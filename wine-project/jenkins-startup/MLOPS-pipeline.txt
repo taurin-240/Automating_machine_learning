@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone app') {
+            steps {
+                git branch:"wine_project_test", url:"https://github.com/taurin-240/Automating_machine_learning.git"
+            }
+        }
+        stage('Install requirements') {
+            steps {
+                build job : "Install requirements"
+            }
+        }
+        stage('Run tests') {
+            steps {
+                build job : "Run tests"
+            }
+        }
+    }
+}

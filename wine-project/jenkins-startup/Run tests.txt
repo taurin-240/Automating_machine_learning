@@ -1,0 +1,2 @@
+. /var/jenkins_home/workspace/MLOPS-pipeline/venv/bin/activate
+python3 -m unittest discover /var/jenkins_home/workspace/MLOPS-pipeline/wine-project/tests/
